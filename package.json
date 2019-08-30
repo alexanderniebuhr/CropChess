@@ -32,6 +32,8 @@
     "colyseus": "^0.11.9",
     "colyseus.js": "^0.11.0",
     "ip": "^1.1.5",
+    "is-port-reachable": "^2.0.1",
+    "lanscanner": "0.0.5",
     "three": "^0.108.0"
   },
   "build": {
