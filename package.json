@@ -5,6 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,10 +25,17 @@
   },
   "homepage": "https://github.com/alexanderniebuhr/CropChess#readme",
   "devDependencies": {
-    "electron": "^7.0.0-beta.3"
+    "electron": "^7.0.0-beta.3",
+    "electron-builder": "^21.2.0"
   },
   "dependencies": {
     "ip": "^1.1.5",
     "three": "^0.108.0"
+  },
+  "build": {
+    "appId": "your.id",
+    "mac": {
+      "category": "your.app.category.type"
+    }
   }
 }
