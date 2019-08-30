@@ -1,0 +1,32 @@
+{
+  "name": "cropchess",
+  "version": "0.1.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexanderniebuhr/CropChess.git"
+  },
+  "keywords": [
+    "CropChess",
+    "CC",
+    "electron"
+  ],
+  "author": "",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/alexanderniebuhr/CropChess/issues"
+  },
+  "homepage": "https://github.com/alexanderniebuhr/CropChess#readme",
+  "devDependencies": {
+    "electron": "^7.0.0-beta.3"
+  },
+  "dependencies": {
+    "ip": "^1.1.5",
+    "three": "^0.108.0"
+  }
+}
