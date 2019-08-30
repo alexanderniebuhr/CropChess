@@ -9,11 +9,21 @@
     We are using node <script>document.write(process.versions.node)</script>,
     Chrome <script>document.write(process.versions.chrome)</script>,
     and Electron <script>document.write(process.versions.electron)</script>.
+    <button id="hostGame" type="button">Host Game</button>
     <div id="ipAddress"></div>
-    <script>
-      document.querySelector("#ipAddress").innerHTML = require('ip').address()
 
+    <input type="text" id="remoteIPAddress" placeholder="Insert Host IP">
+    <button id="findRooms" type="button">Find Rooms</button>
+    <ul id="roomList">
+
+    </ul>
+    <script>
+      document.querySelector("#ipAddress").innerHTML = 'Meine IP-Adresse: ' + require('ip').address()
     </script>
 
+    <script>
+      require('./src/js/client.js')
+      require('./src/js/server.js')
+    </script>
   </body>
 </html>
