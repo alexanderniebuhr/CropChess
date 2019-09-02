@@ -55,12 +55,9 @@
 
         const THREE = require('three')
         require('three/examples/js/loaders/GLTFLoader');
-        const Zlib = require("three/examples/js/libs/inflate.min");
-        window.Zlib = Zlib.Zlib;
         require('three/examples/js/loaders/FBXLoader');
         require('three/examples/js/WebGL.js')
         const gltfLoader = new THREE.GLTFLoader();
-        const fbxloader = new THREE.FBXLoader();
 
         const canvas = document.querySelector('#c');
         const gameWindow = document.querySelector('#gameWindow')
@@ -88,14 +85,10 @@
         camera.position.set( 20, 20, 20 ); // all components equal
         camera.lookAt( scene.position ); // or the origin
 
-        // gltfLoader.load('./src/static/harvester.gltf', (gltf) => {
-        //   const model = gltf.scene;
-        //   scene.add(model);
+        gltfLoader.load('./src/static/harvester.gltf', (gltf) => {
+          const model = gltf.scene;
+          scene.add(model);
 
-        // });
-
-        fbxloader.load('./src/static/harvester.fbx', (fbx) => {
-          scene.add(fbx);
         });
 
         var light = new THREE.AmbientLight( 0X4000FF ); // soft white light
