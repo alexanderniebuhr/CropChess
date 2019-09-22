@@ -43,89 +43,13 @@
 
       </script>
     </div>
-    <div id="gameWindow" class="hidden" style="width: 100vw; height: 100vh; overflow: hidden">
-      <div id="gameOverlay"></div>
-      <canvas id="c"></canvas>
-      <script>
-        'use strict';
-        const Stats = require('stats.js')
-        var stats = new Stats();
-        stats.showPanel( 0 );
-        document.querySelector('#gameOverlay').appendChild( stats.dom );
-
-        const THREE = require('three')
-        require('three/examples/js/loaders/GLTFLoader');
-        require('three/examples/js/loaders/FBXLoader');
-        require('three/examples/js/WebGL.js')
-        const gltfLoader = new THREE.GLTFLoader();
-
-        const canvas = document.querySelector('#c');
-        const gameWindow = document.querySelector('#gameWindow')
-        // const context = canvas.getContext( 'webgl2', { alpha: false } );
-
-        // const renderer = new THREE.WebGLRenderer( { canvas: canvas, context: context } );
-        const renderer = new THREE.WebGLRenderer({canvas: canvas});
-        renderer.physicallyCorrectLights = true;
-
-        renderer.gammaOutput = true;
-        renderer.gammaFactor = 1;
-        renderer.setSize(gameWindow.clientWidth, gameWindow.clientHeight);
-
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color('black');
-
-        // const fov = 75;
-
-        const near = 0.1;
-        const far = 150;
-        const aspect = gameWindow.clientWidth / gameWindow.clientHeight;        
-        var d = 5;
-        const camera = new THREE.OrthographicCamera( - d * aspect, d * aspect, d, - d, near, far );
-
-        camera.position.set( 20, 20, 20 ); // all components equal
-        camera.lookAt( scene.position ); // or the origin
-
-        gltfLoader.load('./src/static/harvester.gltf', (gltf) => {
-          const model = gltf.scene;
-          scene.add(model);
-
-        });
-
-        var light = new THREE.AmbientLight( 0X4000FF ); // soft white light
-        scene.add( light );
-
-        var axesHelper = new THREE.AxesHelper( 5 );
-        scene.add( axesHelper );
-      
-        renderer.render(scene, camera);
-
-        function render(time) {
-          stats.begin();
-          renderer.render( scene, camera );
-          stats.end();
-          requestAnimationFrame( render );
-        }
-        requestAnimationFrame(render);
-      </script>
-    </div>
+    
     <script>
       require('./src/js/client.js')
       require('./src/js/server.js')
     </script>
 
     <style>
-      .hidden {
-        display: none;
-      }
-      #gameOverlay {
-        position: absolute;
-        background: clear;
-        top: 0px;
-        width: 100%;
-        height: 100%;
-        z-index: 100;
-        display:block;
-      }
     </style>
   </body>
 </html>

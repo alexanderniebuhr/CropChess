@@ -91,11 +91,10 @@ async function createServer() {
     console.error("join error", e);
   });
 
-  document.querySelector('#menuWindow').classList.add('hidden')
-  document.querySelector('#gameWindow').classList.remove('hidden')
-  // const remote = require('electron').remote
-  // let w = remote.getCurrentWindow()
-  // w.loadFile('./src/game.html')
+  const remote = require('electron').remote
+  var path = require('path');
+  let w = remote.getCurrentWindow()
+  w.loadURL(path.join(__dirname, '../game.html'))
 }
 
 document.querySelector('#hostGame').addEventListener('click', () => {

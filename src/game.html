@@ -1,13 +1,122 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Hello World!</title>
-    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5/css/all.min.css">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5/css/all.min.css" />
   </head>
-  <body>
-<body>
 
-</body>
+  <body>
+    <div id="gameWindow" class="hidden" style="width: 100vw; height: 100vh; overflow: hidden">
+      <div
+        id="gameOverlay"
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+        "
+      >
+        <div
+          id="timer"
+          style="
+            color: white;
+            background-color: brown;
+            /* width: 100%; */
+            /* display: initial; */
+            padding: 10px 35px 10px 35px;
+            font-size: 35px;
+          "
+          onclick="test()"
+        >
+          22
+        </div>
+      </div>
+      <canvas id="c"></canvas>
+
+      <script>
+        'use strict'
+        const THREE = require('three')
+        require("three/examples/js/loaders/GLTFLoader")
+        require("three/examples/js/WebGL.js")
+
+        const Stats = require('stats.js')
+        var stats = new Stats()
+        stats.showPanel(0)
+        document.querySelector('#gameOverlay').appendChild(stats.dom)
+
+        const gltfLoader = new THREE.GLTFLoader()
+
+        const canvas = document.querySelector('#c')
+        var context = canvas.getContext( 'webgl2', { alpha: false } );
+
+        const gameWindow = document.querySelector('#gameWindow')
+
+        const renderer = new THREE.WebGLRenderer({
+          canvas: canvas,
+          context: context
+        });
+
+        renderer.physicallyCorrectLights = false
+
+        renderer.gammaOutput = true
+        // renderer.gammaFactor = 2.2
+        renderer.setSize(gameWindow.clientWidth, gameWindow.clientHeight)
+
+        const scene = new THREE.Scene()
+        scene.background = new THREE.Color(0x001425)
+        // scene.background = new THREE.Color('black')
+
+        var camera = new THREE.PerspectiveCamera( 60, gameWindow.clientWidth / gameWindow.clientHeight, 0.1, 2000 );
+        // camera.position.set( <X> , <Y> , <Z> );
+        camera.position.set(2, 3, 2.120);
+        camera.rotation.set(THREE.Math.degToRad(-30.0), THREE.Math.degToRad(0), THREE.Math.degToRad(0));
+        console.log(camera.rotation);
+        
+        scene.add( camera );
+
+        gltfLoader.load('./static/map.gltf', gltf => {
+          console.log(gltf);
+          
+          const model = gltf.scene
+          scene.add(model)
+
+        })
+
+
+        var light = new THREE.HemisphereLight( 0xFFA17F, 0x000000, 0.1 );
+        scene.add( light );
+
+        var axesHelper = new THREE.AxesHelper(5)
+        scene.add(axesHelper)
+
+        renderer.render(scene, camera)
+
+        function render(time) {
+          stats.begin()
+
+          renderer.render(scene, camera)
+          stats.end()
+
+          requestAnimationFrame(render)
+        }
+        requestAnimationFrame(render)
+
+      </script>
+    </div>
+    <script>
+
+    </script>
+    <style>
+      #gameOverlay {
+        position: absolute;
+        background: clear;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+        display: block;
+      }
+    </style>
+  </body>
 </html>
