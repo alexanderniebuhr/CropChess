@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/alexanderniebuhr/CropChess#readme",
   "devDependencies": {
-    "electron": "^7.0.0-beta.3",
+    "electron": "^7.2.4",
     "electron-builder": "^21.2.0"
   },
   "dependencies": {
